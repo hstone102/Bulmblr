@@ -31,12 +31,12 @@ class PostController extends Controller
     public function store(Request $request)
     {
 
-        $post = new Post;
-        $post->name = $request->name;
-        $post->title = $request->title;
-        $post->body = $request->body;
+        $post = new \App\post;
+        $post->name = $request->input('name');
+        $post->title = $request->input('title');
+        $post->post = $request->input('post');
         Auth::user()->posts()->save($post);
-        $request->session()->flash('status', "<strong>{$post->title}</strong> has been posted!");
+        $request->session()->flash('status', "{$post->title} has been posted!");
         return redirect()->route('home');
     }
     /**
