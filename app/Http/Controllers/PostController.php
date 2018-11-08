@@ -12,7 +12,6 @@ class PostController extends Controller
 
     public function index()
     {
-
     }
     /**
      * Show the form for creating a new resource.
@@ -45,7 +44,7 @@ class PostController extends Controller
      * @param  int  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(\App\post $post)
     {
       return view('posts.show', compact('post'));
     }
@@ -55,8 +54,11 @@ class PostController extends Controller
      * @param  int  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(\App\post $post)
     {
+
+
+        return view('edit', compact('post'));
     }
     /**
      * Update the specified resource in storage.
@@ -65,8 +67,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, \App\post $post)
     {
+        //$post = \App\post::find($id);
+        $post->name = $request->input('name');
+        $post->title = $request->input('title');
+        $post->post = $request->input('post');
+         $post->save();
+        return redirect('/');
     }
     /**
      * Remove the specified resource from storage.
@@ -74,7 +82,7 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(\App\post $post)
     {
     }
 }

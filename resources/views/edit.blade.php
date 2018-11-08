@@ -22,25 +22,26 @@
               <p>Go to posts <a href="\">Here</a></p>
             <div>
 
-                <form method="post" action="{{ route('posts.store') }}">
+                <form form class="" method="post" action="/posts/{{ $post->id }}">
+                  @method('PUT')
                   @csrf
                   <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-10">
-                      <input class="form-control" name="name" id="inputPassword" placeholder="Name">
+                      <input class="form-control" type="text" id="name" name="name" value="{{ $post->name }}">
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="title" class="col-sm-2 col-form-label">Title</label>
                     <div class="col-sm-10">
-                      <input class="form-control" name="title" id="titleOfPost" placeholder="Title of Post">
+                      <input class="form-control" type="text" id="title" name="title" value="{{ $post->title }}">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="post">Post:</label>
-                    <textarea class="form-control"  name="post" rows="5" id="post"></textarea>
+                    <textarea class="form-control"  name="post" rows="5" id="post">{{ $post->post}}</textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </form>
 
         </div>

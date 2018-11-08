@@ -12,11 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    $posts = \App\post::orderBy('updated_at', 'desc')->get();
+    return view('welcome', compact('posts'));
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/edit', 'HomeController@index')->name('edit');
 
 Route::resource('posts', 'PostController');
